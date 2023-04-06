@@ -1,0 +1,13 @@
+com.finsimusfca.financial_literacy_game.app-jetified-annotation-experimental-1.1.0-0 /Users/lucieschulz/.gradle/caches/transforms-3/3795200b4ef80330da39fee63b1e3f99/transformed/jetified-annotation-experimental-1.1.0/res
+com.finsimusfca.financial_literacy_game.app-jetified-window-java-1.0.0-beta04-1 /Users/lucieschulz/.gradle/caches/transforms-3/4f8a10da11d41b9ccabff01515190014/transformed/jetified-window-java-1.0.0-beta04/res
+com.finsimusfca.financial_literacy_game.app-core-1.6.0-2 /Users/lucieschulz/.gradle/caches/transforms-3/ae42e6c01585f28a5adeac7499fca147/transformed/core-1.6.0/res
+com.finsimusfca.financial_literacy_game.app-jetified-window-1.0.0-beta04-3 /Users/lucieschulz/.gradle/caches/transforms-3/fa8aad42c825af1f34f93ab9a34c8ecb/transformed/jetified-window-1.0.0-beta04/res
+com.finsimusfca.financial_literacy_game.app-debug-4 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/android/app/src/debug/res
+com.finsimusfca.financial_literacy_game.app-main-5 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/android/app/src/main/res
+com.finsimusfca.financial_literacy_game.app-google-services-6 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/build/app/generated/res/google-services/debug
+com.finsimusfca.financial_literacy_game.app-pngs-7 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/build/app/generated/res/pngs/debug
+com.finsimusfca.financial_literacy_game.app-resValues-8 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/build/app/generated/res/resValues/debug
+com.finsimusfca.financial_literacy_game.app-rs-9 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/build/app/generated/res/rs/debug
+com.finsimusfca.financial_literacy_game.app-mergeDebugResources-10 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.finsimusfca.financial_literacy_game.app-mergeDebugResources-11 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/build/app/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.finsimusfca.financial_literacy_game.app-merged_res-12 /Users/lucieschulz/AndroidStudioProjects/financial_literacy_game/build/app/intermediates/merged_res/debug
