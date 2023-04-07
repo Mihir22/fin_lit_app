@@ -1,20 +1,27 @@
 import 'dart:math';
 
-import 'package:financial_literacy_game/config/constants.dart';
-import 'package:financial_literacy_game/domain/concepts/asset.dart';
-import 'package:financial_literacy_game/domain/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'concepts/asset.dart';
 import 'concepts/game_data.dart';
 import 'concepts/loan.dart';
 import 'entities/levels.dart';
+import 'utils/utils.dart';
 
 final gameDataNotifierProvider =
     StateNotifierProvider<GameDataNotifier, GameData>(
         (ref) => GameDataNotifier());
 
 class GameDataNotifier extends StateNotifier<GameData> {
-  GameDataNotifier() : super(GameData());
+  GameDataNotifier()
+      : super(GameData(
+          cash: levels[0].startingCash,
+          personalIncome:
+              (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
+          personalExpenses: (levels[0].includePersonalIncome
+              ? levels[0].personalExpenses
+              : 0),
+        ));
 
   void setCashInterest(double newInterest) {
     state = state.copyWith(cashInterest: newInterest);
@@ -61,12 +68,11 @@ class GameDataNotifier extends StateNotifier<GameData> {
     }
 
     // check if next level was reached
-    for (int i = levels.length - 1; i > state.levelId; i--) {
-      if (state.cash >= levels[i].requiredCash) {
-        // move on to next level
-        state = state.copyWith(levelId: i, cash: initialMoney);
-        break;
-      }
+    int nextLevelId = state.levelId + 1;
+    if (state.cash >= levels[state.levelId].cashGoal) {
+      // move on to next level, reset cash
+      state = state.copyWith(
+          levelId: nextLevelId, cash: levels[nextLevelId].startingCash);
     }
 
     // check if game has ended
@@ -127,7 +133,11 @@ class GameDataNotifier extends StateNotifier<GameData> {
     for (Loan loan in state.loans) {
       loanPayments += loan.paymentPerPeriod;
     }
-    double totalExpenses = state.personalExpenses + loanPayments;
+
+    double totalExpenses = loanPayments +
+        (levels[state.levelId].includePersonalIncome
+            ? state.personalExpenses
+            : 0);
     return totalExpenses;
   }
 
@@ -137,7 +147,10 @@ class GameDataNotifier extends StateNotifier<GameData> {
     for (Asset asset in state.assets) {
       assetIncome += asset.income;
     }
-    double totalIncome = state.personalIncome + assetIncome;
+    double totalIncome = assetIncome +
+        (levels[state.levelId].includePersonalIncome
+            ? state.personalIncome
+            : 0);
     return totalIncome;
   }
 
@@ -154,7 +167,13 @@ class GameDataNotifier extends StateNotifier<GameData> {
 
   void resetGame() {
     // TODO: TRACK / SAVE GAME DATA
-    state = GameData();
+    state = GameData(
+      cash: levels[0].startingCash,
+      personalIncome:
+          (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
+      personalExpenses:
+          (levels[0].includePersonalIncome ? levels[0].personalExpenses : 0),
+    );
   }
 
   double calculateSavingsROI(

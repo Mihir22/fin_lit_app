@@ -1,9 +1,8 @@
 import 'dart:math';
 
-import 'package:financial_literacy_game/config/constants.dart';
-import 'package:financial_literacy_game/domain/utils/utils.dart';
-
+import '../../config/constants.dart';
 import '../concepts/asset.dart';
+import '../utils/utils.dart';
 
 Asset goats = Asset(
   type: AssetType.goat,

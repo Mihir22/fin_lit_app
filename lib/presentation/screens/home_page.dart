@@ -2,17 +2,17 @@ import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:financial_literacy_game/domain/concepts/asset.dart';
-import 'package:financial_literacy_game/domain/game_data_notifier.dart';
-import 'package:financial_literacy_game/domain/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config/constants.dart';
+import '../../domain/concepts/asset.dart';
 import '../../domain/concepts/level.dart';
 import '../../domain/concepts/loan.dart';
 import '../../domain/entities/assets.dart';
 import '../../domain/entities/levels.dart';
+import '../../domain/game_data_notifier.dart';
+import '../../domain/utils/utils.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -64,7 +64,7 @@ class SmallPortraitLayout extends ConsumerWidget {
     int levelId = ref.watch(gameDataNotifierProvider).levelId;
     String nextLevelCash;
     if (levelId + 1 < levels.length) {
-      nextLevelCash = '(next @ \$${levels[levelId + 1].requiredCash})';
+      nextLevelCash = '(next @ \$${levels[levelId].cashGoal})';
     } else {
       nextLevelCash = '';
     }
@@ -91,8 +91,12 @@ class SmallPortraitLayout extends ConsumerWidget {
           const SizedBox(height: 10),
           const SectionCard(title: 'OVERVIEW', content: OverviewContent()),
           const SizedBox(height: 10),
-          const SectionCard(title: 'PERSONAL', content: PersonalContent()),
-          const SizedBox(height: 10),
+          if (levels[ref.read(gameDataNotifierProvider).levelId]
+              .includePersonalIncome)
+            const SectionCard(title: 'PERSONAL', content: PersonalContent()),
+          if (levels[ref.read(gameDataNotifierProvider).levelId]
+              .includePersonalIncome)
+            const SizedBox(height: 10),
           const SectionCard(title: 'ASSETS', content: AssetContent()),
           const SizedBox(height: 10),
           const SectionCard(title: 'LOANS', content: LoanContent()),
@@ -311,43 +315,26 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
 
   @override
   void initState() {
-    // get default level data
     Level defaultLevel =
         levels[widget.ref.read(gameDataNotifierProvider).levelId];
-    // get a copy with random loan and savings data
-    Level randomLevel = defaultLevel.copyWith(
-      loan: getRandomLoan(),
-      savingsRate: getRandomDouble(
-        start: minimumSavingsRate,
-        end: maximumSavingsRate,
-        steps: stepsSavingsRate,
-      ),
+    currentLevel = defaultLevel.copyWith(
+      loan: defaultLevel.loanInterestRandomized
+          ? getRandomLoan()
+          : defaultLevel.loan,
+      savingsRate: defaultLevel.savingsInterestRandomized
+          ? getRandomDouble(
+              start: minimumSavingsRate,
+              end: maximumSavingsRate,
+              steps: stepsSavingsRate,
+            )
+          : defaultLevel.savingsRate,
     );
-    // choose between default and random based on global setting
-    currentLevel =
-        levelInterestAndSavingsRandomized ? randomLevel : defaultLevel;
-    // randomize assets based on level setting
     if (currentLevel.assetsAreRandomized) {
       List<Asset> randomizedAssets = [];
       for (int i = 0; i < currentLevel.assets.length; i++) {
         randomizedAssets.add(getRandomAsset());
       }
       currentLevel = currentLevel.copyWith(assets: randomizedAssets);
-    }
-    // randomize risk level of default assets
-    else {
-      List<Asset> assetsWithRandomRisks = [];
-      for (Asset asset in currentLevel.assets) {
-        assetsWithRandomRisks.add(
-          asset.copyWith(
-            riskLevel: getRandomDouble(
-                start: minimumRiskLevel,
-                end: maximumRiskLevel,
-                steps: stepsRiskLevel),
-          ),
-        );
-      }
-      currentLevel = currentLevel.copyWith(assets: assetsWithRandomRisks);
     }
 
     levelAssets = currentLevel.assets;
@@ -444,34 +431,6 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
                   style: const TextStyle(fontSize: 100),
                   group: textGroup,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: AutoSizeText(
-                        'S: \$${(widget.ref.read(gameDataNotifierProvider.notifier).calculateSavingsROI(cashInterest: currentLevel.savingsRate, lifeExpectancy: _selectedAsset.lifeSpan)).toStringAsFixed(2)}',
-                        maxLines: 1,
-                        style: const TextStyle(fontSize: 100),
-                        group: textGroup,
-                      ),
-                    ),
-                    Expanded(
-                      child: AutoSizeText(
-                        'C: \$${(widget.ref.read(gameDataNotifierProvider.notifier).calculateBuyCashROI(riskLevel: _selectedAsset.riskLevel, expectedIncome: _selectedAsset.income, assetPrice: _selectedAsset.price)).toStringAsFixed(2)}',
-                        maxLines: 1,
-                        style: const TextStyle(fontSize: 100),
-                        group: textGroup,
-                      ),
-                    ),
-                    Expanded(
-                      child: AutoSizeText(
-                        'B: \$${(widget.ref.read(gameDataNotifierProvider.notifier).calculateBorrowROI(riskLevel: _selectedAsset.riskLevel, expectedIncome: _selectedAsset.income, assetPrice: _selectedAsset.price, interestRate: currentLevel.loan.interestRate)).toStringAsFixed(2)}',
-                        maxLines: 1,
-                        style: const TextStyle(fontSize: 100),
-                        group: textGroup,
-                      ),
-                    )
-                  ],
-                )
               ],
             ),
           ),
