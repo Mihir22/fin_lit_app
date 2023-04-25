@@ -1,15 +1,13 @@
 const String appTitle = 'FinSim Game';
-// defines if interest and savings rates are random
-const bool levelInterestAndSavingsRandomized = true;
 
 // decimal points for borrow and interest rates
 // on "investment options" screen
 const int decimalValuesToDisplay = 0;
 
 // initial values when new level starts
-const double initialMoney = 5;
-const double initialPersonalIncome = 8;
-const double initialPersonalExpenses = 7;
+const double defaultLevelStartMoney = 5;
+const double defaultPersonalIncome = 8;
+const double defaultPersonalExpenses = 7;
 
 // default values
 const int defaultLifeSpan = 6;
@@ -28,3 +26,6 @@ const double stepsInterestRate = 0.05;
 const double minimumRiskLevel = 0.20;
 const double maximumRiskLevel = 0.40;
 const double stepsRiskLevel = 0.05;
+
+const double priceVariation = 0.20; // varies price of asset by +/- 20%
+const int incomeVariation = 1; // varies income of asset by +/- $1

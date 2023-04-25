@@ -9,18 +9,14 @@ import 'entities/levels.dart';
 import 'utils/utils.dart';
 
 final gameDataNotifierProvider =
-    StateNotifierProvider<GameDataNotifier, GameData>(
-        (ref) => GameDataNotifier());
+    StateNotifierProvider<GameDataNotifier, GameData>((ref) => GameDataNotifier());
 
 class GameDataNotifier extends StateNotifier<GameData> {
   GameDataNotifier()
       : super(GameData(
           cash: levels[0].startingCash,
-          personalIncome:
-              (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
-          personalExpenses: (levels[0].includePersonalIncome
-              ? levels[0].personalExpenses
-              : 0),
+          personalIncome: (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
+          personalExpenses: (levels[0].includePersonalIncome ? levels[0].personalExpenses : 0),
         ));
 
   void setCashInterest(double newInterest) {
@@ -40,7 +36,7 @@ class GameDataNotifier extends StateNotifier<GameData> {
     // age assets by one period
     List<Asset> survivedAssets = [];
     for (Asset asset in state.assets) {
-      if (asset.age < asset.lifeSpan) {
+      if (asset.age < asset.lifeExpectancy) {
         // add to survived list if not too old
         Asset olderAsset = asset.copyWith(age: asset.age + 1);
         survivedAssets.add(olderAsset);
@@ -70,15 +66,29 @@ class GameDataNotifier extends StateNotifier<GameData> {
     // check if next level was reached
     int nextLevelId = state.levelId + 1;
     if (state.cash >= levels[state.levelId].cashGoal) {
-      // move on to next level, reset cash
-      state = state.copyWith(
-          levelId: nextLevelId, cash: levels[nextLevelId].startingCash);
+      // check if game has ended
+      if (state.levelId + 1 >= (levels.length)) {
+        state = state.copyWith(gameIsFinished: true);
+      } else {
+        // move on to next level, reset cash
+        _loadLevel(nextLevelId);
+      }
     }
+  }
 
-    // check if game has ended
-    if (state.levelId >= (levels.length - 1)) {
-      state = state.copyWith(gameIsFinished: true);
-    }
+  void restartLevel() {
+    state = state.copyWith(isBankrupt: false);
+    _loadLevel(state.levelId);
+  }
+
+  void _loadLevel(int levelID) {
+    // move to specified level, reset cash
+    state = state.copyWith(
+      levelId: levelID,
+      cash: levels[levelID].startingCash,
+      assets: [], // remove all previous assets
+      loans: [], // remove all previous loans
+    );
   }
 
   void _addAsset(Asset newAsset) {
@@ -101,8 +111,8 @@ class GameDataNotifier extends StateNotifier<GameData> {
     }
   }
 
-  Future<bool> buyAsset(Asset asset, Function showNotEnoughCash,
-      Function showAnimalDied, double newCashInterest) async {
+  Future<bool> buyAsset(Asset asset, Function showNotEnoughCash, Function showAnimalDied,
+      double newCashInterest) async {
     if (state.cash >= asset.price) {
       state = state.copyWith(cash: state.cash - asset.price);
       //check if animal died based on risk level
@@ -117,8 +127,8 @@ class GameDataNotifier extends StateNotifier<GameData> {
     }
   }
 
-  Future<void> loanAsset(Loan loan, Asset asset, Function showAnimalDied,
-      double newCashInterest) async {
+  Future<void> loanAsset(
+      Loan loan, Asset asset, Function showAnimalDied, double newCashInterest) async {
     //check if animal died based on risk level
     if (!await _animalDied(asset, showAnimalDied)) {
       _addAsset(asset);
@@ -134,10 +144,8 @@ class GameDataNotifier extends StateNotifier<GameData> {
       loanPayments += loan.paymentPerPeriod;
     }
 
-    double totalExpenses = loanPayments +
-        (levels[state.levelId].includePersonalIncome
-            ? state.personalExpenses
-            : 0);
+    double totalExpenses =
+        loanPayments + (levels[state.levelId].includePersonalIncome ? state.personalExpenses : 0);
     return totalExpenses;
   }
 
@@ -147,10 +155,8 @@ class GameDataNotifier extends StateNotifier<GameData> {
     for (Asset asset in state.assets) {
       assetIncome += asset.income;
     }
-    double totalIncome = assetIncome +
-        (levels[state.levelId].includePersonalIncome
-            ? state.personalIncome
-            : 0);
+    double totalIncome =
+        assetIncome + (levels[state.levelId].includePersonalIncome ? state.personalIncome : 0);
     return totalIncome;
   }
 
@@ -169,17 +175,13 @@ class GameDataNotifier extends StateNotifier<GameData> {
     // TODO: TRACK / SAVE GAME DATA
     state = GameData(
       cash: levels[0].startingCash,
-      personalIncome:
-          (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
-      personalExpenses:
-          (levels[0].includePersonalIncome ? levels[0].personalExpenses : 0),
+      personalIncome: (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
+      personalExpenses: (levels[0].includePersonalIncome ? levels[0].personalExpenses : 0),
     );
   }
 
-  double calculateSavingsROI(
-      {required double cashInterest, int lifeExpectancy = 6}) {
-    return (state.cash * pow(1 + cashInterest, lifeExpectancy) - state.cash) /
-        lifeExpectancy;
+  double calculateSavingsROI({required double cashInterest, int lifeExpectancy = 6}) {
+    return (state.cash * pow(1 + cashInterest, lifeExpectancy) - state.cash) / lifeExpectancy;
   }
 
   double calculateBuyCashROI({
@@ -188,8 +190,7 @@ class GameDataNotifier extends StateNotifier<GameData> {
     required double assetPrice,
     int lifeExpectancy = 6,
   }) {
-    return (lifeExpectancy * expectedIncome * (1 - riskLevel) - assetPrice) /
-        lifeExpectancy;
+    return (lifeExpectancy * expectedIncome * (1 - riskLevel) - assetPrice) / lifeExpectancy;
   }
 
   double calculateBorrowROI({
@@ -199,8 +200,7 @@ class GameDataNotifier extends StateNotifier<GameData> {
     required double interestRate,
     int lifeExpectancy = 6,
   }) {
-    return (lifeExpectancy * expectedIncome * (1 - riskLevel) -
-            (assetPrice * (1 + interestRate))) /
+    return (lifeExpectancy * expectedIncome * (1 - riskLevel) - (assetPrice * (1 + interestRate))) /
         lifeExpectancy;
   }
 }
