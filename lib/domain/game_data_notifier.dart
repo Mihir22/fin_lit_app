@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:confetti/confetti.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../config/constants.dart';
 import 'concepts/asset.dart';
 import 'concepts/game_data.dart';
 import 'concepts/loan.dart';
+import 'concepts/person.dart';
 import 'entities/levels.dart';
 import 'utils/utils.dart';
 
@@ -14,10 +18,24 @@ final gameDataNotifierProvider =
 class GameDataNotifier extends StateNotifier<GameData> {
   GameDataNotifier()
       : super(GameData(
+          person: Person(),
           cash: levels[0].startingCash,
           personalIncome: (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
           personalExpenses: (levels[0].includePersonalIncome ? levels[0].personalExpenses : 0),
+          confettiController: ConfettiController(),
         ));
+
+  void setPerson(Person newPerson) {
+    state = state.copyWith(person: newPerson);
+    debugPrint('Person set to ${newPerson.firstName} ${newPerson.lastName}, ${newPerson.uid}');
+  }
+
+  // show confetti animation for a certain amount of time
+  void showConfetti() async {
+    state.confettiController.play();
+    await Future.delayed(const Duration(seconds: showConfettiSeconds));
+    state.confettiController.stop();
+  }
 
   void setCashInterest(double newInterest) {
     state = state.copyWith(cashInterest: newInterest);
@@ -64,14 +82,13 @@ class GameDataNotifier extends StateNotifier<GameData> {
     }
 
     // check if next level was reached
-    int nextLevelId = state.levelId + 1;
+    //int nextLevelId = state.levelId + 1;
     if (state.cash >= levels[state.levelId].cashGoal) {
       // check if game has ended
       if (state.levelId + 1 >= (levels.length)) {
         state = state.copyWith(gameIsFinished: true);
       } else {
-        // move on to next level, reset cash
-        _loadLevel(nextLevelId);
+        state = state.copyWith(currentLevelSolved: true);
       }
     }
   }
@@ -81,6 +98,11 @@ class GameDataNotifier extends StateNotifier<GameData> {
     _loadLevel(state.levelId);
   }
 
+  // move on to next level, reset cash, loans, and assets, reset level solved flag
+  void moveToNextLevel() {
+    _loadLevel(state.levelId + 1);
+  }
+
   void _loadLevel(int levelID) {
     // move to specified level, reset cash
     state = state.copyWith(
@@ -88,6 +110,7 @@ class GameDataNotifier extends StateNotifier<GameData> {
       cash: levels[levelID].startingCash,
       assets: [], // remove all previous assets
       loans: [], // remove all previous loans
+      currentLevelSolved: false, // resetLevelSolved flag
     );
   }
 
@@ -174,9 +197,11 @@ class GameDataNotifier extends StateNotifier<GameData> {
   void resetGame() {
     // TODO: TRACK / SAVE GAME DATA
     state = GameData(
+      person: state.person,
       cash: levels[0].startingCash,
       personalIncome: (levels[0].includePersonalIncome ? levels[0].personalIncome : 0),
       personalExpenses: (levels[0].includePersonalIncome ? levels[0].personalExpenses : 0),
+      confettiController: ConfettiController(),
     );
   }
 

@@ -38,6 +38,10 @@ dependencies:
   auto_size_text: ^3.0.0
   flutter_riverpod: ^2.3.2
   carousel_slider: ^4.2.1
+  defer_pointer: ^0.0.2
+  confetti: ^0.7.0
+  shared_preferences: ^2.1.0
+  device_info_plus: ^8.2.2
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +59,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  
+  # allows to generate translation / internationalization files
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

@@ -6,7 +6,7 @@ List<Level> levels = [
   // Level 1 - cash only, no interest on cash, high starting cash amount
   Level(
     startingCash: 50,
-    cashGoal: 75, //100,
+    cashGoal: 75,
     assets: [chickens.copyWith(riskLevel: 0)],
     loan: Loan(interestRate: 0.25, asset: cow),
     assetTypeRandomized: true,

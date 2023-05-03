@@ -15,15 +15,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: appTitle,
-        themeMode: ThemeMode.system,
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        home: const HomePage(),
-      ),
+    return const ProviderScope(
+      child: MaterialAppConsumerWidget(),
+    );
+  }
+}
+
+class MaterialAppConsumerWidget extends ConsumerWidget {
+  const MaterialAppConsumerWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: appTitle,
+      themeMode: ThemeMode.system,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      home: const Homepage(),
     );
   }
 }

@@ -1,6 +1,9 @@
 // helper method to copy a list of assets
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
+import '../../config/color_palette.dart';
 import '../concepts/asset.dart';
 import '../concepts/level.dart';
 import '../concepts/loan.dart';
@@ -51,4 +54,24 @@ String generateLoanTipMessage({
       '(\$${asset.income} x ${asset.lifeExpectancy}) - (\$${asset.price} x ${1 + level.loan.interestRate}) = '
       '$profitString';
   return tipString;
+}
+
+// extension to allow capitalization of first letter in strings
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  }
+}
+
+void showErrorSnackBar({required BuildContext context, required String errorMessage}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      duration: const Duration(seconds: 2),
+      backgroundColor: ColorPalette().errorSnackBarBackground,
+      content: Text(
+        errorMessage,
+        style: TextStyle(color: ColorPalette().darkText),
+      ),
+    ),
+  );
 }
