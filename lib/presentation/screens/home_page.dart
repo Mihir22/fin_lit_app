@@ -1,9 +1,9 @@
+import 'dart:developer' as developer;
+import 'dart:io';
 import 'dart:math';
-
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../config/color_palette.dart';
 import '../../config/constants.dart';
 import '../../domain/concepts/person.dart';
@@ -20,7 +20,11 @@ import '../widgets/menu_dialog.dart';
 import '../widgets/overview_content.dart';
 import '../widgets/personal_content.dart';
 import '../widgets/section_card.dart';
+import 'package:flutter/foundation.dart';
 
+import 'package:flutter_translate/flutter_translate.dart';
+
+ 
 class Homepage extends ConsumerStatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -28,9 +32,11 @@ class Homepage extends ConsumerStatefulWidget {
   ConsumerState<Homepage> createState() => _HomepageState();
 }
 
+
 class _HomepageState extends ConsumerState<Homepage> {
   late TextEditingController firstNameTextController;
   late TextEditingController lastNameTextController;
+ 
 
   bool setPersonData(Person enteredPerson) {
     if (enteredPerson.firstName == '' || enteredPerson.lastName == '') {
@@ -50,6 +56,7 @@ class _HomepageState extends ConsumerState<Homepage> {
   void initState() {
     firstNameTextController = TextEditingController();
     lastNameTextController = TextEditingController();
+    
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await getDeviceInfo();
@@ -61,24 +68,18 @@ class _HomepageState extends ConsumerState<Homepage> {
               builder: (context) {
                 return MenuDialog(
                   showCloseButton: false,
-                  title: 'Welcome to the FinSim Game',
+                  title: translate('Welcome to the FinSim Game'),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text("Dear participants, thank you for "
-                          "participating. This game is meant to "
-                          "mimic financial investment decisions and to teach "
-                          "financial skills. It will only be used for this "
-                          "purpose. We emphasize that no part of this game "
-                          "exercise affects the relationship with your bank.\n\n"
-                          "Please enter your contact info below:"),
+                       Text(translate("ಆತ್ಮೀಯ ಭಾಗವಹಿಸುವವರೇ, ಭಾಗವಹಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು. ಈ ಆಟವು ಹಣಕಾಸಿನ ಹೂಡಿಕೆ ನಿರ್ಧಾರಗಳನ್ನು ಅನುಕರಿಸಲು ಮತ್ತು ಹಣಕಾಸಿನ ಕೌಶಲ್ಯಗಳನ್ನು ಕಲಿಸಲು ಉದ್ದೇಶಿಸಲಾಗಿದೆ. ಇದನ್ನು ಈ ಉದ್ದೇಶಕ್ಕಾಗಿ ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ. ಈ ಆಟದ ವ್ಯಾಯಾಮದ ಯಾವುದೇ ಭಾಗವು ನಿಮ್ಮ ಬ್ಯಾಂಕ್‌ನೊಂದಿಗಿನ ಸಂಬಂಧದ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ ಎಂದು ನಾವು ಒತ್ತಿಹೇಳುತ್ತೇವೆ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಕೆಳಗೆ ನಮೂದಿಸಿ:")),
                       TextField(
                         controller: firstNameTextController,
-                        decoration: const InputDecoration(hintText: "First name"),
+                        decoration: const InputDecoration(hintText: "ಮೊದಲ ಹೆಸರು"),
                       ),
                       TextField(
                         controller: lastNameTextController,
-                        decoration: const InputDecoration(hintText: "Last name"),
+                        decoration: const InputDecoration(hintText: "ಕೊನೆಯ ಹೆಸರು"),
                       ),
                       const SizedBox(
                         height: 20,
@@ -100,7 +101,7 @@ class _HomepageState extends ConsumerState<Homepage> {
                           ),
                         )) Navigator.of(context).pop();
                       },
-                      child: const Text('Start game'),
+                      child: Text(translate('Start game')),
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -124,7 +125,8 @@ class _HomepageState extends ConsumerState<Homepage> {
                           );
                         }
                       },
-                      child: const Text('How to play'),
+                      child: Text(translate('How to play')),
+                      
                     ),
                   ],
                 );
@@ -145,6 +147,7 @@ class _HomepageState extends ConsumerState<Homepage> {
   @override
   Widget build(BuildContext context) {
     int levelId = ref.watch(gameDataNotifierProvider).levelId;
+    
     return Stack(
       children: [
         Scaffold(
@@ -193,6 +196,7 @@ class _HomepageState extends ConsumerState<Homepage> {
             ),
           ),
         ),
+      
         Align(
           alignment: Alignment.topCenter,
           child: ConfettiWidget(

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:financial_literacy_game/config/color_palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class SectionCard extends StatelessWidget {
   const SectionCard({
@@ -10,8 +13,11 @@ class SectionCard extends StatelessWidget {
   final String title;
   final Widget content;
 
+  
+
   @override
   Widget build(BuildContext context) {
+    stdout.write("this is a test translation: ${Text(translate('How to play'))}");
     return Container(
       decoration: BoxDecoration(
         color: ColorPalette().backgroundSectionCard,
@@ -23,7 +29,7 @@ class SectionCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              translate(title),
               style: TextStyle(
                 fontSize: 20.0,
                 color: ColorPalette().darkText,

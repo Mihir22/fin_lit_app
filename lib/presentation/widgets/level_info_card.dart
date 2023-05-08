@@ -1,6 +1,7 @@
 import 'package:financial_literacy_game/config/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../domain/entities/levels.dart';
 import 'cash_indicator.dart';
@@ -24,11 +25,11 @@ class LevelInfoCard extends ConsumerWidget {
     return Stack(
       children: [
         SectionCard(
-          title: 'Level ${levelId + 1} / ${levels.length}',
+          title: '${translate("Level")} ${levelId + 1} / ${levels.length}',
           content: Column(
             children: [
               Text(
-                'Cash Goal: '
+                '${translate("Cash Goal")}: '
                 '${nextLevelCash.toStringAsFixed(2)}',
                 style: TextStyle(
                   fontSize: 17.0,

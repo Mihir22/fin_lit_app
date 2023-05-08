@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../config/color_palette.dart';
 import '../../config/constants.dart';
@@ -26,7 +27,7 @@ class OverviewContent extends ConsumerWidget {
           child: ContentCard(
             aspectRatio: overviewAspectRatio,
             content: OverviewTileContent(
-              title: 'Cash',
+              title: translate('cash'),
               value: cash,
               group: valueSizeGroup,
             ),
@@ -37,7 +38,7 @@ class OverviewContent extends ConsumerWidget {
           child: ContentCard(
             aspectRatio: overviewAspectRatio,
             content: OverviewTileContent(
-              title: 'Income',
+              title: translate('income'),
               value: income,
               group: valueSizeGroup,
             ),
@@ -48,7 +49,7 @@ class OverviewContent extends ConsumerWidget {
           child: ContentCard(
             aspectRatio: overviewAspectRatio,
             content: OverviewTileContent(
-              title: 'Expenses',
+              title: translate('expenses'),
               value: -expenses,
               group: valueSizeGroup,
             ),

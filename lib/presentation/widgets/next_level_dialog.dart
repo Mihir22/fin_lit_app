@@ -2,6 +2,7 @@ import 'package:financial_literacy_game/config/color_palette.dart';
 import 'package:financial_literacy_game/presentation/widgets/menu_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../domain/game_data_notifier.dart';
 
@@ -16,7 +17,7 @@ class NextLevelDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return MenuDialog(
       showCloseButton: false,
-      title: 'Congratulations',
+      title: translate('Congratulations'),
       content: Text(
         'You have reached the next level!',
         style: TextStyle(
@@ -31,7 +32,7 @@ class NextLevelDialog extends StatelessWidget {
             Navigator.pop(context);
             ref.read(gameDataNotifierProvider.notifier).moveToNextLevel();
           },
-          child: const Text('NEXT'),
+          child: Text(translate('NEXT')),
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../config/color_palette.dart';
 import '../../domain/concepts/asset.dart';
@@ -41,7 +42,7 @@ class AssetCarousel extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: AutoSizeText(
-                        '${asset.numberOfAnimals} x ${asset.type.name}',
+                        '${asset.numberOfAnimals} x ${translate(asset.type.name)}',
                         style: const TextStyle(
                           fontSize: 100,
                           fontWeight: FontWeight.bold,
@@ -62,7 +63,7 @@ class AssetCarousel extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: AutoSizeText(
-                      'Price: \$${asset.price}',
+                      '${translate("price")}: \₹${asset.price}',
                       style: const TextStyle(
                         fontSize: 100,
                         color: Colors.white,
@@ -73,7 +74,7 @@ class AssetCarousel extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: AutoSizeText(
-                      'Income: \$${asset.income} / year',
+                      '${translate("income")}: \₹${asset.income} / ${translate("year")}',
                       style: const TextStyle(
                         fontSize: 100,
                         color: Colors.white,
@@ -84,7 +85,7 @@ class AssetCarousel extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: AutoSizeText(
-                      'Life Expectancy: ${asset.lifeExpectancy} years',
+                      '${translate("life expectancy")}: ${asset.lifeExpectancy} ${translate("year")}',
                       style: const TextStyle(
                         fontSize: 100,
                         color: Colors.white,

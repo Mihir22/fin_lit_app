@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class CashAlertDialog extends StatelessWidget {
   const CashAlertDialog({
@@ -8,12 +9,12 @@ class CashAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Error'),
-      content: const Text('Not enough cash!'),
+      title: Text(translate('error')),
+      content:  Text(translate('not enough cash!')),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, true),
-          child: const Text('okay'),
+          child: Text(translate('okay')),
         )
       ],
     );

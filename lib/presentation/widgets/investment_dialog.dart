@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:financial_literacy_game/presentation/widgets/next_level_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../config/color_palette.dart';
 import '../../config/constants.dart';
@@ -158,14 +159,14 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
           barrierDismissible: false,
           builder: (context) {
             return AlertDialog(
-              title: const Text('Warning'),
+              title: Text(translate('Warning')),
               content: asset.numberOfAnimals > 1
-                  ? Text('${asset.type.name}s have died!')
-                  : Text('${asset.type.name} has died!'),
+                  ? Text('${translate(asset.type.name)} + ${translate("have died!")}')
+                  : Text('${translate(asset.type.name)} + ${translate("has died!")}'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context, true),
-                  child: const Text('okay'),
+                  child: Text(translate('okay')),
                 )
               ],
             );
@@ -177,8 +178,8 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
         child: AlertDialog(
           backgroundColor: ColorPalette().popUpBackground,
           //insetPadding: EdgeInsets.zero,
-          title: const Text(
-            'Investment Options',
+          title: Text(
+            translate('Investment Options'),
             style: TextStyle(
               fontSize: 25.0,
               fontWeight: FontWeight.bold,
@@ -191,7 +192,7 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  'Your current cash: \$${widget.ref.read(gameDataNotifierProvider).cash.toStringAsFixed(2)}',
+                  '${translate("Your current cash")}: \₹${widget.ref.read(gameDataNotifierProvider).cash.toStringAsFixed(2)}',
                   maxLines: 1,
                   style: const TextStyle(fontSize: 100),
                   group: textGroup,
@@ -207,7 +208,7 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
                 ),
                 const SizedBox(height: 20),
                 AutoSizeText(
-                  'Tip:',
+                  '${translate("Tip")}:',
                   maxLines: 1,
                   style: const TextStyle(
                     fontSize: 100,
@@ -217,14 +218,14 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
                 ),
                 if (currentLevel.showLoanBorrowOption)
                   AutoSizeText(
-                    '• Borrow at ${(levelLoan.interestRate * 100).toStringAsFixed(decimalValuesToDisplay)}% interest total',
+                    '• ${translate("Borrow at")} ${(levelLoan.interestRate * 100).toStringAsFixed(decimalValuesToDisplay)}% ${translate("interest total")}',
                     maxLines: 1,
                     style: const TextStyle(fontSize: 100),
                     group: textGroup,
                   ),
                 if (currentLevel.savingsRate != 0 || currentLevel.savingsInterestRandomized)
                   AutoSizeText(
-                    '• Interest rate on cash is ${(currentLevel.savingsRate * 100).toStringAsFixed(decimalValuesToDisplay)}% / year',
+                    '• ${translate("Interest rate on cash is")} ${(currentLevel.savingsRate * 100).toStringAsFixed(decimalValuesToDisplay)}% / ${translate("year")}',
                     maxLines: 1,
                     style: const TextStyle(fontSize: 100),
                     group: textGroup,
@@ -277,7 +278,7 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
                 checkGameHasEnded(widget.ref, context);
                 checkNextLevelReached(widget.ref, context);
               },
-              child: const Text("don't buy"),
+              child: Text(translate("don't buy")),
             ),
             if (currentLevel.showCashBuyOption)
               ElevatedButton(
@@ -301,7 +302,7 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
                       }
                     }
                   },
-                  child: const Text('pay cash')),
+                  child: Text(translate("pay cash"))),
             if (currentLevel.showLoanBorrowOption)
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -319,7 +320,7 @@ class _InvestmentDialogState extends State<InvestmentDialog> {
                       checkGameHasEnded(widget.ref, context);
                     }
                   },
-                  child: const Text('borrow')),
+                  child: Text(translate('borrow'))),
           ],
         ),
       ),

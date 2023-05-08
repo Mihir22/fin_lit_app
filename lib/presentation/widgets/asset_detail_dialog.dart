@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../config/color_palette.dart';
 import '../../domain/game_data_notifier.dart';
@@ -12,7 +13,7 @@ class AssetDetailDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      title: Text('Assets'),
+      title: Text(translate('Assets')),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

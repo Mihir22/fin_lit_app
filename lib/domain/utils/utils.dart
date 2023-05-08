@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../config/color_palette.dart';
 import '../concepts/asset.dart';
@@ -36,10 +37,10 @@ String generateCashTipMessage({
   required Asset asset,
   required Level level,
 }) {
-  String tipString = 'Cash: ';
+  String tipString = '${translate("cash")}: ';
   double profit = asset.income * asset.lifeExpectancy - asset.price;
-  String profitString = '${profit > 0 ? '' : '-'} \$${profit.abs()}';
-  tipString += '(\$${asset.income} x ${asset.lifeExpectancy}) - \$${asset.price} = $profitString';
+  String profitString = '${profit > 0 ? '' : '-'} \₹${profit.abs()}';
+  tipString += '(\₹${asset.income} x ${asset.lifeExpectancy}) - \₹${asset.price} = $profitString';
   return tipString;
 }
 
@@ -47,11 +48,11 @@ String generateLoanTipMessage({
   required Asset asset,
   required Level level,
 }) {
-  String tipString = 'Loan: ';
+  String tipString = '${translate("loan")}: ';
   double profit = asset.income * asset.lifeExpectancy - asset.price * (1 + level.loan.interestRate);
-  String profitString = '${profit > 0 ? '' : '-'} \$${profit.abs().toStringAsFixed(2)}';
+  String profitString = '${profit > 0 ? '' : '-'} \₹${profit.abs().toStringAsFixed(2)}';
   tipString +=
-      '(\$${asset.income} x ${asset.lifeExpectancy}) - (\$${asset.price} x ${1 + level.loan.interestRate}) = '
+      '(\₹${asset.income} x ${asset.lifeExpectancy}) - (\₹${asset.price} x ${1 + level.loan.interestRate}) = '
       '$profitString';
   return tipString;
 }

@@ -1,5 +1,6 @@
 import 'package:defer_pointer/defer_pointer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../config/color_palette.dart';
 
@@ -26,7 +27,7 @@ class MenuDialog extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Text(
-              title,
+              translate(title),
               style: TextStyle(
                 color: ColorPalette().darkText,
               ),

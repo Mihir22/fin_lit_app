@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 import '../../config/color_palette.dart';
 import 'investment_dialog.dart';
@@ -33,7 +34,7 @@ class NextPeriodButton extends ConsumerWidget {
                 });
           }
         },
-        child: const Text('NEXT'),
+        child:  Text(translate('NEXT')),
       ),
     );
   }
