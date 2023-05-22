@@ -8,11 +8,22 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'cash_indicator.dart';
 import 'next_period_button.dart';
 
+
+
 class HowToPlayDialog extends ConsumerWidget {
+    
+  // ignore: prefer_const_constructors_in_immutables
   const HowToPlayDialog({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    String text1 = translate("1. Click the \"NEXT\" button on the top right corner to start the game.");
+    String text2 = translate("2. You can buy an animal with cash, take a loan or decide not to buy the asset.");
+    String text3 = translate("3. Each round animals vary in price, income and life expectancy.");
+    String text4 = translate("4. You might find the calculations underneath the animal card helpful.");
+    String text5 = translate("5. You have to reach a certain amount of cash to move to the next level.");
+    String mtext = translate("cash goal");
     return MenuDialog(
       title: translate('How to play'),
       content: SizedBox(
@@ -30,34 +41,34 @@ class HowToPlayDialog extends ConsumerWidget {
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   NextPeriodButton(isDemonstrationMode: true),
                   SizedBox(height: 20.0),
                   Text(
-                    '1. ಆಟವನ್ನು ಪ್ರಾರಂಭಿಸಲು ಮೇಲಿನ ಬಲ ಮೂಲೆಯಲ್ಲಿರುವ "ಮುಂದೆ" ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ.',
+                    text1,
                     style: TextStyle(fontSize: 20.0),
                     textAlign: TextAlign.center,
                   ),
                 ],
               ),
             ),
-            const HowToPlayCard(
+             HowToPlayCard(
               content: Text(
-                '2. ನೀವು ಹಣದಿಂದ ಪ್ರಾಣಿಯನ್ನು ಖರೀದಿಸಬಹುದು, ಸಾಲವನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು ಅಥವಾ ಆಸ್ತಿಯನ್ನು ಖರೀದಿಸದಿರಲು ನಿರ್ಧರಿಸಬಹುದು.',
+                text2,
                 style: TextStyle(fontSize: 20.0),
                 textAlign: TextAlign.center,
               ),
             ),
-            const HowToPlayCard(
+             HowToPlayCard(
               content: Text(
-               "3. ಪ್ರತಿಯೊಂದು ಸುತ್ತಿನ ಪ್ರಾಣಿಗಳು ಬೆಲೆ, ಆದಾಯ ಮತ್ತು ಜೀವಿತಾವಧಿಯಲ್ಲಿ ಬದಲಾಗುತ್ತವೆ.",
+               text3,
                 style: TextStyle(fontSize: 20.0),
                 textAlign: TextAlign.center,
               ),
             ),
-            const HowToPlayCard(
+             HowToPlayCard(
               content: Text(
-                '4. ಪ್ರಾಣಿ ಕಾರ್ಡ್‌ನ ಕೆಳಗಿನ ಲೆಕ್ಕಾಚಾರಗಳು ನಿಮಗೆ ಸಹಾಯಕವಾಗಬಹುದು.',
+                text4,
                 style: TextStyle(fontSize: 20.0),
                 textAlign: TextAlign.center,
               ),
@@ -67,7 +78,7 @@ class HowToPlayDialog extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'ನಗದು ಗುರಿ: '
+                    '$mtext'
                     '${75.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 17.0,
@@ -80,8 +91,8 @@ class HowToPlayDialog extends ConsumerWidget {
                     cashGoal: 100,
                   ),
                   const SizedBox(height: 20.0),
-                  const Text(
-                    '5. ಮುಂದಿನ ಹಂತಕ್ಕೆ ಹೋಗಲು ನೀವು ನಿರ್ದಿಷ್ಟ ನಗದು ಮೊತ್ತವನ್ನು ತಲುಪಬೇಕು.',
+                   Text(
+                    text5,
                     style: TextStyle(fontSize: 20.0),
                     textAlign: TextAlign.center,
                   ),

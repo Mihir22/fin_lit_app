@@ -42,7 +42,7 @@ class _HomepageState extends ConsumerState<Homepage> {
     if (enteredPerson.firstName == '' || enteredPerson.lastName == '') {
       showErrorSnackBar(
         context: context,
-        errorMessage: 'Please enter first and last name.',
+        errorMessage: translate('Please enter first and last name.'),
       );
       return false;
     }
@@ -59,6 +59,9 @@ class _HomepageState extends ConsumerState<Homepage> {
     
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      String text1 = translate("Dear Participant, Thank you for participating. This game is intended to simulate financial investment decisions and teach financial skills. It is used only for this purpose. We emphasize that no part of this gaming exercise affects your relationship with your bank. Please enter your contact information below:");
+      String fname = translate("first name");
+      String lname = translate("last name");
       await getDeviceInfo();
       loadPerson(ref: ref).then((personLoaded) {
         if (!personLoaded) {
@@ -72,14 +75,14 @@ class _HomepageState extends ConsumerState<Homepage> {
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                       Text(translate("ಆತ್ಮೀಯ ಭಾಗವಹಿಸುವವರೇ, ಭಾಗವಹಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು. ಈ ಆಟವು ಹಣಕಾಸಿನ ಹೂಡಿಕೆ ನಿರ್ಧಾರಗಳನ್ನು ಅನುಕರಿಸಲು ಮತ್ತು ಹಣಕಾಸಿನ ಕೌಶಲ್ಯಗಳನ್ನು ಕಲಿಸಲು ಉದ್ದೇಶಿಸಲಾಗಿದೆ. ಇದನ್ನು ಈ ಉದ್ದೇಶಕ್ಕಾಗಿ ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ. ಈ ಆಟದ ವ್ಯಾಯಾಮದ ಯಾವುದೇ ಭಾಗವು ನಿಮ್ಮ ಬ್ಯಾಂಕ್‌ನೊಂದಿಗಿನ ಸಂಬಂಧದ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ ಎಂದು ನಾವು ಒತ್ತಿಹೇಳುತ್ತೇವೆ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಕೆಳಗೆ ನಮೂದಿಸಿ:")),
+                      Text(text1),
                       TextField(
                         controller: firstNameTextController,
-                        decoration: const InputDecoration(hintText: "ಮೊದಲ ಹೆಸರು"),
+                        decoration:  InputDecoration(hintText: fname),
                       ),
                       TextField(
                         controller: lastNameTextController,
-                        decoration: const InputDecoration(hintText: "ಕೊನೆಯ ಹೆಸರು"),
+                        decoration:  InputDecoration(hintText: lname),
                       ),
                       const SizedBox(
                         height: 20,

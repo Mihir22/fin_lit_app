@@ -2,7 +2,7 @@
     "Level":"ಮಟ್ಟದ",
     "OVERVIEW":"ಅವಲೋಕನ",
     "How to play":"ಹೇಗೆ ಆಡುವುದು",
-    "Assets":"ಸ್ವತ್ತುಗಳು",
+    "ASSETS":"ಸ್ವತ್ತುಗಳು",
     "LOANS":"ಸಾಲಗಳು",
     "PERSONAL":"ವೈಯಕ್ತಿಕ",
     "Start game":"ಆಟವನ್ನು ಪ್ರಾರಂಭಿಸಿ",
@@ -33,11 +33,18 @@
     "3. Each round animals vary in price, income and life expectancy.":"3. ಪ್ರತಿಯೊಂದು ಸುತ್ತಿನ ಪ್ರಾಣಿಗಳು ಬೆಲೆ, ಆದಾಯ ಮತ್ತು ಜೀವಿತಾವಧಿಯಲ್ಲಿ ಬದಲಾಗುತ್ತವೆ.",
     "4. You might find the calculations underneath the animal card helpful.":"4. ಪ್ರಾಣಿ ಕಾರ್ಡ್‌ನ ಕೆಳಗಿನ ಲೆಕ್ಕಾಚಾರಗಳು ನಿಮಗೆ ಸಹಾಯಕವಾಗಬಹುದು.",
     "cash goal":"ನಗದು ಗುರಿ",
-    "You have to reach a certain cash amount to make it to the next level.":"ಮುಂದಿನ ಹಂತಕ್ಕೆ ಹೋಗಲು ನೀವು ನಿರ್ದಿಷ್ಟ ನಗದು ಮೊತ್ತವನ್ನು ತಲುಪಬೇಕು.",
+    "5. You have to reach a certain amount of cash to move to the next level.":"ಮುಂದಿನ ಹಂತಕ್ಕೆ ಹೋಗಲು ನೀವು ನಿರ್ದಿಷ್ಟ ನಗದು ಮೊತ್ತವನ್ನು ತಲುಪಬೇಕು.",
     "RESTART LEVEL":"ಹಂತವನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ",
     "RESTART GAME":"ಆಟವನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ",
     "Unfortunately you ran out of cash. You can either restart this level or start a new game.":"ದುರದೃಷ್ಟವಶಾತ್ ನಿಮ್ಮ ಬಳಿ ನಗದು ಖಾಲಿಯಾಗಿದೆ. ನೀವು ಈ ಹಂತವನ್ನು ಮರುಪ್ರಾರಂಭಿಸಬಹುದು ಅಥವಾ ಹೊಸ ಆಟವನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು.",
     "Congratulations you finished the game successfully!":"ನೀವು ಆಟವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಮುಗಿಸಿದ್ದೀರಿ ಅಭಿನಂದನೆಗಳು!",
-    "RESTART":"ಪುನರಾರಂಭದ"
-    
+    "RESTART":"ಪುನರಾರಂಭದ",
+    "Congratulations":"ಅಭಿನಂದನೆಗಳು",
+    "Welcome to the FinSim Game":"FinSim ಆಟಕ್ಕೆ ಸುಸ್ವಾಗತ",
+    "have died!":"ಸತ್ತಿದ್ದಾರೆ!",
+    "has died!":"ತೀರಿಕೊಂಡಿದ್ದಾರೆ!",
+    "year":"ವರ್ಷ",
+    "price":"ಬೆಲೆ",
+    "life expectancy":"ಆಯಸ್ಸು",
+    "interest total":"ಒಟ್ಟು ಬಡ್ಡಿ"
 }

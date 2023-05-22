@@ -28,12 +28,12 @@
     "error":"ದೋಷ",
     "not enough case":"ಸಾಕಷ್ಟು ನಗದು ಇಲ್ಲ",
     "okay":"ಸರಿ",
-    "1. To start the game click the \"NEXT\" button in the top right corner":"1. ಆಟವನ್ನು ಪ್ರಾರಂಭಿಸಲು ಮೇಲಿನ ಬಲ ಮೂಲೆಯಲ್ಲಿರುವ \"ಮುಂದೆ\"  ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ",
+    "1. Click the \"NEXT\" button on the top right corner to start the game.":"1. ಆಟವನ್ನು ಪ್ರಾರಂಭಿಸಲು ಮೇಲಿನ ಬಲ ಮೂಲೆಯಲ್ಲಿರುವ \"ಮುಂದೆ\"  ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ",
     "2. You can buy an animal with cash, take a loan or decide not to buy the asset.":"2. ನೀವು ಹಣದಿಂದ ಪ್ರಾಣಿಯನ್ನು ಖರೀದಿಸಬಹುದು, ಸಾಲವನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು ಅಥವಾ ಆಸ್ತಿಯನ್ನು ಖರೀದಿಸದಿರಲು ನಿರ್ಧರಿಸಬಹುದು.",
     "3. Each round animals vary in price, income and life expectancy.":"3. ಪ್ರತಿಯೊಂದು ಸುತ್ತಿನ ಪ್ರಾಣಿಗಳು ಬೆಲೆ, ಆದಾಯ ಮತ್ತು ಜೀವಿತಾವಧಿಯಲ್ಲಿ ಬದಲಾಗುತ್ತವೆ.",
     "4. You might find the calculations underneath the animal card helpful.":"4. ಪ್ರಾಣಿ ಕಾರ್ಡ್‌ನ ಕೆಳಗಿನ ಲೆಕ್ಕಾಚಾರಗಳು ನಿಮಗೆ ಸಹಾಯಕವಾಗಬಹುದು.",
     "cash goal":"ನಗದು ಗುರಿ",
-    "You have to reach a certain cash amount to make it to the next level.":"ಮುಂದಿನ ಹಂತಕ್ಕೆ ಹೋಗಲು ನೀವು ನಿರ್ದಿಷ್ಟ ನಗದು ಮೊತ್ತವನ್ನು ತಲುಪಬೇಕು.",
+    "5. You have to reach a certain amount of cash to move to the next level.":"ಮುಂದಿನ ಹಂತಕ್ಕೆ ಹೋಗಲು ನೀವು ನಿರ್ದಿಷ್ಟ ನಗದು ಮೊತ್ತವನ್ನು ತಲುಪಬೇಕು.",
     "RESTART LEVEL":"ಹಂತವನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ",
     "RESTART GAME":"ಆಟವನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ",
     "Unfortunately you ran out of cash. You can either restart this level or start a new game.":"ದುರದೃಷ್ಟವಶಾತ್ ನಿಮ್ಮ ಬಳಿ ನಗದು ಖಾಲಿಯಾಗಿದೆ. ನೀವು ಈ ಹಂತವನ್ನು ಮರುಪ್ರಾರಂಭಿಸಬಹುದು ಅಥವಾ ಹೊಸ ಆಟವನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು.",
@@ -46,5 +46,9 @@
     "year":"ವರ್ಷ",
     "price":"ಬೆಲೆ",
     "life expectancy":"ಆಯಸ್ಸು",
-    "interest total":"ಒಟ್ಟು ಬಡ್ಡಿ"
+    "interest total":"ಒಟ್ಟು ಬಡ್ಡಿ",
+    "Dear Participant, Thank you for participating. This game is intended to simulate financial investment decisions and teach financial skills. It is used only for this purpose. We emphasize that no part of this gaming exercise affects your relationship with your bank. Please enter your contact information below:":"ಆತ್ಮೀಯ ಭಾಗವಹಿಸುವವರೇ, ಭಾಗವಹಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು. ಈ ಆಟವು ಹಣಕಾಸಿನ ಹೂಡಿಕೆ ನಿರ್ಧಾರಗಳನ್ನು ಅನುಕರಿಸಲು ಮತ್ತು ಹಣಕಾಸಿನ ಕೌಶಲ್ಯಗಳನ್ನು ಕಲಿಸಲು ಉದ್ದೇಶಿಸಲಾಗಿದೆ. ಇದನ್ನು ಈ ಉದ್ದೇಶಕ್ಕಾಗಿ ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ. ಈ ಆಟದ ವ್ಯಾಯಾಮದ ಯಾವುದೇ ಭಾಗವು ನಿಮ್ಮ ಬ್ಯಾಂಕ್‌ನೊಂದಿಗಿನ ಸಂಬಂಧದ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ ಎಂದು ನಾವು ಒತ್ತಿಹೇಳುತ್ತೇವೆ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಕೆಳಗೆ ನಮೂದಿಸಿ:",
+    "first name":"ಮೊದಲ ಹೆಸರು",
+    "last name":"ಕೊನೆಯ ಹೆಸರು",
+    "Please enter first and last name.":"ದಯವಿಟ್ಟು ಮೊದಲ ಮತ್ತು ಕೊನೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ."
 }
