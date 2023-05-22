@@ -63,7 +63,7 @@ class AssetCarousel extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: AutoSizeText(
-                      '${translate("price")}: \₹${asset.price}',
+                      '${translate("price")}: \$${asset.price}',
                       style: const TextStyle(
                         fontSize: 100,
                         color: Colors.white,
@@ -74,7 +74,7 @@ class AssetCarousel extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: AutoSizeText(
-                      '${translate("income")}: \₹${asset.income} / ${translate("year")}',
+                      '${translate("income")}: \$${asset.income} / ${translate("year")}',
                       style: const TextStyle(
                         fontSize: 100,
                         color: Colors.white,
